@@ -8,7 +8,7 @@
 import Foundation
 
 
-class card {
+class Card {
 
     var imageName = ""
     var isFlipped = false
