@@ -20,6 +20,7 @@
 		F325E5492AB05B0E0090F3BF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F325E5482AB05B0E0090F3BF /* Card.swift */; };
 		F352EE802AB0737A00B8BC9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F352EE7F2AB0737A00B8BC9A /* ViewController.swift */; };
 		F352EE822AB07BDF00B8BC9A /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F352EE812AB07BDF00B8BC9A /* CardCollectionViewCell.swift */; };
+		F3E6BC9D2AB972910060279B /* soundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E6BC9C2AB972910060279B /* soundManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		F325E5482AB05B0E0090F3BF /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F352EE7F2AB0737A00B8BC9A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F352EE812AB07BDF00B8BC9A /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3E6BC9C2AB972910060279B /* soundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soundManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				F325E5322AB0398F0090F3BF /* AppDelegate.swift */,
 				F325E5342AB0398F0090F3BF /* SceneDelegate.swift */,
 				F325E5462AB059D60090F3BF /* cardModel.swift */,
+				F3E6BC9C2AB972910060279B /* soundManager.swift */,
 				F352EE812AB07BDF00B8BC9A /* CardCollectionViewCell.swift */,
 				F352EE7F2AB0737A00B8BC9A /* ViewController.swift */,
 				F325E5482AB05B0E0090F3BF /* Card.swift */,
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3E6BC9D2AB972910060279B /* soundManager.swift in Sources */,
 				F352EE802AB0737A00B8BC9A /* ViewController.swift in Sources */,
 				F325E5472AB059D60090F3BF /* cardModel.swift in Sources */,
 				F325E5492AB05B0E0090F3BF /* Card.swift in Sources */,

@@ -20,7 +20,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var cardsArray = [Card]()
     var firstFlippedCardIndex: IndexPath?
     var timer: Timer?
-    var milliseconds: Int = 30 * 1000
+    var milliseconds: Int = 80 * 1000
+    var soundPlayer = soundManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
 //        fixes the bug where the time used to stop while scrolling the cell
         RunLoop.main.add(timer! , forMode: .common)
+    }
+
+
+//function for playing sound
+    override func viewDidAppear(_ animated: Bool) {
+//        Calling function for playing sound
+        soundPlayer.playSound(effect: .shuffle)
 
     }
 
@@ -105,6 +113,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         if cell?.card?.isFlipped == false && cell?.card?.isMatched == false {
             //condition for checking when to flipped the card and this case if the card flipped is true then the card will flipped down
             cell?.flippedUp()
+            soundPlayer.playSound(effect: .flip)
 
             //        check if this is the  first card or second card that is flipped
 
@@ -145,6 +154,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
 //                It is a match
 
+//                play a match sound
+                soundPlayer.playSound(effect: .matched)
+
 //                set the status and remove it
                 cardOne.isMatched = true
                 cardTwo.isMatched = true
@@ -160,6 +172,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 //                It is not a match
                 cardOne.isFlipped = false
                 cardTwo.isFlipped = false
+
+//play a nomatch sound
+                soundPlayer.playSound(effect: .noMatch)
 
 //                flip them over
                 cardOneCell?.flippedDown()
@@ -207,14 +222,38 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                                            , message: message,
                                            preferredStyle: .alert)
 
-            let okAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+            let okAction = UIAlertAction(title: "OK", style: .destructive)
+            { _ in
+                self.resetGame()
+            }
+
             alert.addAction(okAction)
 
 //            shows the alert with the help of this
             present(alert, animated: true, completion: nil)
 
         }
-
     }
+
+// Fucntion to reset the game after the user presses the alert button
+    func resetGame() {
+           // Reset game variables
+           cardsArray = model.getCards()
+           milliseconds = 80 * 1000
+           firstFlippedCardIndex = nil
+
+           // Reset the timer
+           timer?.invalidate()
+           timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(timerFired), userInfo: nil, repeats: true)
+           RunLoop.main.add(timer!, forMode: .common)
+
+           // Reset the timer label
+           timerLabel.textColor = UIColor.black
+           let seconds: Double = Double(milliseconds) / 1000.0
+           timerLabel.text = String(format: "Time Remaining: %.2f", seconds)
+
+           // Reload the collection view to show the shuffled cards
+           collectionView.reloadData()
+   }
 }
 
